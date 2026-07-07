@@ -1,0 +1,24 @@
+{
+  "name": "openapi-angular-cli",
+  "version": "1.0.0",
+  "description": "CLI tool to generate Angular Models and Services from an OpenAPI specification",
+  "main": "out/cli.js",
+  "bin": {
+    "openapi-angular-cli": "./out/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/cli.ts",
+    "test": "ts-node src/test/unit.ts"
+  },
+  "dependencies": {
+    "@apidevtools/swagger-parser": "^10.1.0",
+    "commander": "^12.0.0",
+    "handlebars": "^4.7.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

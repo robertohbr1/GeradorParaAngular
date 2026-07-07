@@ -1,0 +1,36 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+{{#each imports}}
+import { {{name}} } from '../models/{{file}}';
+{{/each}}
+{{#if imports.length}}
+
+{{/if}}
+@Injectable({
+  providedIn: 'root'
+})
+export class {{name}}Service {
+  protected basePath = '{{{basePath}}}';
+
+  constructor(protected http: HttpClient) {}
+{{#each methods}}
+
+  /**
+   * {{{description}}}
+   */
+  {{name}}({{#each parameters}}{{name}}{{#if optional}}?{{/if}}: {{type}}{{#unless @last}}, {{/unless}}{{/each}}): Observable<{{responseType}}> {
+    {{#if queryParams.length}}
+    let params = new HttpParams();
+    {{#each queryParams}}
+    if ({{name}} !== undefined && {{name}} !== null) {
+      params = params.set('{{originalName}}', {{name}}.toString());
+    }
+    {{/each}}
+    {{/if}}
+    return this.http.{{httpMethod}}<{{responseType}}>(
+      `${this.basePath}{{{urlPath}}}`{{#if hasBody}}, body{{/if}}{{#if queryParams.length}}, { params }{{/if}}
+    );
+  }
+{{/each}}
+}

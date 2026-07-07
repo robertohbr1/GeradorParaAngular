@@ -1,0 +1,21 @@
+{{#each imports}}
+import { {{name}} } from './{{file}}';
+{{/each}}
+{{#if imports.length}}
+
+{{/if}}
+{{#if description}}
+/**
+ * {{{description}}}
+ */
+{{/if}}
+export interface {{name}} {
+{{#each properties}}
+  {{#if description}}
+  /**
+   * {{{description}}}
+   */
+  {{/if}}
+  {{name}}{{#if optional}}?{{/if}}: {{type}};
+{{/each}}
+}
